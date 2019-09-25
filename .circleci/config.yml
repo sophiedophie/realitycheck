@@ -6,7 +6,6 @@ resource_job_defaults: &resource_job_defaults
     - run:
         name: verify that job ran with the requested resource_class option
         command: |
-          env
           export CIRCLE_HOSTNAME='https://circleci.com'
           curl -k \
           "$CIRCLE_HOSTNAME/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM?\
@@ -189,20 +188,20 @@ jobs:
 
 workflows:
   version: 2
-  resource_class_jobs:
-    jobs:
-      - small
-      # - medium
-      # - medium+
-      # - large
-      # - xlarge
-
-  # vm_jobs:
+  # resource_class_jobs:
   #   jobs:
-  #     - machine
-  #     - remote_docker
-  #     - docker_layer_caching
-  #     - machine_dlc
+  #     - small
+  #     - medium
+  #     - medium+
+  #     - large
+  #     - xlarge
+
+  vm_jobs:
+    jobs:
+      - machine
+      - remote_docker
+      - docker_layer_caching
+      - machine_dlc
 
   # feature_jobs:
   #   jobs:
