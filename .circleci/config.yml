@@ -6,6 +6,9 @@ resource_job_defaults: &resource_job_defaults
     - run:
         name: verify that job ran with the requested resource_class option
         command: |
+          echo $CIRCLE_HOSTNAME
+          echo $CIRCLE_PROJECT_USERNAME
+          echo $CIRCLE_PROJECT_REPONAME
           curl -k \
           "$CIRCLE_HOSTNAME/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM?\
           circle-token=$CIRCLE_TOKEN" | \
@@ -190,10 +193,10 @@ workflows:
   resource_class_jobs:
     jobs:
       - small
-      - medium
-      - medium+
-      - large
-      - xlarge
+      # - medium
+      # - medium+
+      # - large
+      # - xlarge
 
   # vm_jobs:
   #   jobs:
